@@ -16,11 +16,11 @@ jobs:
       - name: Set up LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: cv.tex  # Replace 'cv.tex' with the name of your LaTeX file
+          root_file: cv.tex
           compiler: pdflatex
           pre_compile: |
-            sudo apt-get update
-            sudo apt-get install -y texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
+            apt-get update
+            apt-get install -y texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
 
       - name: Build LaTeX CV
         run: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
