@@ -16,9 +16,11 @@ jobs:
       - name: Set up LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          latex-version: 'latest'
-          packages: 'texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra'
+          compiler: pdflatex
           root_file: cv.tex  # Replace 'cv.tex' with the name of your LaTeX file
+          pre_compile: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
 
       - name: Update package index
         run: sudo apt-get update
