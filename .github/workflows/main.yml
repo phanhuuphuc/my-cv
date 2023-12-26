@@ -3,7 +3,7 @@ name: Build and Deploy LaTeX CV
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   build:
@@ -16,24 +16,14 @@ jobs:
       - name: Set up LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          compiler: pdflatex
           root_file: cv.tex  # Replace 'cv.tex' with the name of your LaTeX file
+          compiler: pdflatex
           pre_compile: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
-
-      - name: Update package index
-        run: sudo apt-get update
-
-      - name: Install additional LaTeX packages
-        run: sudo apt-get install texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
+            sudo apt-get update
+            sudo apt-get install -y texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
 
       - name: Build LaTeX CV
-        run: |
-          pdflatex -interaction=nonstopmode -halt-on-error cv.tex
-          bibtex cv  # Add this line if you have bibliographies
-          pdflatex -interaction=nonstopmode -halt-on-error cv.tex
-          pdflatex -interaction=nonstopmode -halt-on-error cv.tex
+        run: pdflatex -interaction=nonstopmode -halt-on-error cv.tex
 
       - name: Move artifacts
         run: |
