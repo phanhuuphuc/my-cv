@@ -3,7 +3,7 @@ name: Build and Deploy LaTeX CV
 on:
   push:
     branches:
-      - main
+      - main  # Adjust the branch name if necessary
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
           compiler: pdflatex
           pre_compile: |
             apt-get update
-            apt-get install -y texlive-latex-base texlive-bibtex-extra  # Add any other necessary packages
+            apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-latex-extra
 
       - name: Build LaTeX CV
         run: pdflatex -pdf -file-line-error -halt-on-error -interaction=nonstopmode cv.tex
